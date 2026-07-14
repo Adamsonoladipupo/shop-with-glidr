@@ -1,0 +1,119 @@
+.section {
+  padding: 56px var(--container-pad);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+/* ─── Left column ─── */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--color-dark);
+  margin-bottom: 14px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray);
+  margin-bottom: 28px;
+}
+
+/* ─── Stats ─── */
+.stats {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-dark);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--color-gray);
+  font-weight: 500;
+}
+
+/* ─── Category grid ─── */
+.categoryGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.categoryCard {
+  background: var(--color-gray-light);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.categoryCard:hover {
+  background: var(--color-teal-light);
+  border-color: var(--color-teal);
+  box-shadow: var(--shadow-teal);
+}
+
+.cardActive {
+  background: var(--color-teal-light);
+  border-color: var(--color-teal);
+}
+
+.categoryLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-gray-mid);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 56px;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 72px var(--container-pad);
+  }
+}

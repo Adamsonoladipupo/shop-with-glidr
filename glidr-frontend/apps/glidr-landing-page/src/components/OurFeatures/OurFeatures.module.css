@@ -1,0 +1,138 @@
+.section {
+  padding: 0 var(--container-pad) 56px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ─── Teal card wrapper ─── */
+.card {
+  background: var(--color-teal-light);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+}
+
+/* ─── Header row ─── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.heading {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  color: var(--color-dark);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-gray-mid);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover:not(.tabActive) {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.tabActive {
+  background: var(--color-teal);
+  color: var(--color-white);
+  border-color: var(--color-teal);
+}
+
+/* ─── Content panel ─── */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.featureCard {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.featureTitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 10px;
+}
+
+.featureDesc {
+  font-size: 14px;
+  color: var(--color-gray);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.learnMore {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+
+.learnMore:hover {
+  gap: 8px;
+}
+
+/* ─── Illustration ─── */
+.illustration {
+  display: flex;
+  justify-content: center;
+}
+
+.illustrationSvg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 44px 40px;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .section {
+    padding-bottom: 72px;
+  }
+}

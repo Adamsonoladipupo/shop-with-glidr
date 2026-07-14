@@ -1,0 +1,6 @@
+auto_push.sh
+node_modules/
+.expo/
+android/.gradle/
+android/build/
+ios/Pods/

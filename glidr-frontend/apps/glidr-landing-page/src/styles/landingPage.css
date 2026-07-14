@@ -1,0 +1,70 @@
+/* ─── Glidr Design Tokens ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-teal:       #00C9A7;
+  --color-teal-dark:  #00A98A;
+  --color-teal-light: #E6FAF7;
+  --color-dark:       #111827;
+  --color-gray:       #6B7280;
+  --color-gray-mid:   #374151;
+  --color-gray-light: #F9FAFB;
+  --color-border:     #E5E7EB;
+  --color-white:      #FFFFFF;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-pill: 30px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-teal: 0 4px 16px rgba(0, 201, 167, 0.2);
+
+  --container-max: 1160px;
+  --container-pad: 20px;
+
+  --section-gap: 72px;
+}
+
+/* ─── Global Reset ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-dark);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

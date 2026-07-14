@@ -1,0 +1,98 @@
+.section {
+  padding: 0 var(--container-pad) 80px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ─── Card ─── */
+.card {
+  background: var(--color-teal);
+  border-radius: var(--radius-lg);
+  padding: 44px 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grid overlay for texture (matches design) */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* ─── Copy ─── */
+.copy {
+  position: relative;
+  z-index: 1;
+  color: var(--color-white);
+}
+
+.heading {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+
+.body {
+  font-size: 14px;
+  line-height: 1.65;
+  opacity: 0.9;
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.cta {
+  display: inline-block;
+  background: var(--color-white);
+  color: var(--color-teal);
+  border-radius: var(--radius-pill);
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.cta:hover {
+  background: var(--color-teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── Illustration ─── */
+.illustration {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.illustrationSvg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .card {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 56px 56px;
+  }
+}

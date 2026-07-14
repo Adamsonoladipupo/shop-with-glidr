@@ -1,0 +1,170 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px var(--container-pad) 56px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ─── Illustrations ─── */
+.illustrationRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 32px;
+}
+
+.illustration {
+  flex: 1;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Search bar ─── */
+.searchBar {
+  display: flex;
+  align-items: center;
+  background: var(--color-gray-light);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 8px 8px 8px 16px;
+  width: 100%;
+  max-width: 440px;
+  gap: 10px;
+  margin-bottom: 28px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.searchBar:focus-within {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(0, 201, 167, 0.12);
+  background: var(--color-white);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-dark);
+  outline: none;
+  min-width: 0;
+}
+
+.searchInput::placeholder {
+  color: var(--color-gray);
+}
+
+/* Remove native search clear button */
+.searchInput::-webkit-search-cancel-button {
+  display: none;
+}
+
+.searchBtn {
+  background: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.searchBtn:hover {
+  background: var(--color-teal-dark);
+  transform: translateY(-1px);
+}
+
+/* ─── Copy ─── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 10px;
+}
+
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.heading {
+  font-size: clamp(26px, 6vw, 52px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  max-width: 720px;
+  margin-bottom: 12px;
+}
+
+.accent {
+  color: var(--color-teal);
+}
+
+.subheading {
+  font-size: 15px;
+  color: var(--color-gray);
+  margin-bottom: 28px;
+}
+
+/* ─── CTA ─── */
+.cta {
+  display: inline-block;
+  background: var(--color-teal);
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  padding: 13px 36px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--color-teal-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-teal);
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .illustrationRow {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 64px var(--container-pad) 72px;
+  }
+
+  .illustrationRow {
+    max-width: 700px;
+  }
+}

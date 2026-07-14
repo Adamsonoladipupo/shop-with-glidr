@@ -1,0 +1,131 @@
+.footer {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 52px 0 24px;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* ─── Top grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 44px;
+}
+
+/* ─── Brand ─── */
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.brandName {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+}
+
+.brandDesc {
+  font-size: 13px;
+  color: #9CA3AF;
+  line-height: 1.65;
+  max-width: 240px;
+}
+
+/* ─── Nav columns ─── */
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.colTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navLink {
+  font-size: 13px;
+  color: #9CA3AF;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--color-teal);
+}
+
+/* ─── Bottom bar ─── */
+.bottom {
+  border-top: 1px solid #1F2937;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* ─── Social links ─── */
+.socialList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9CA3AF;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: var(--social-color, var(--color-teal));
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 768px) {
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .socialList {
+    justify-content: flex-end;
+  }
+}
