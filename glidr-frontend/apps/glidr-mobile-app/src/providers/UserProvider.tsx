@@ -1,117 +1,48 @@
 import {
     createContext,
-    ReactNode,
-    useContext,
-    useMemo,
     useState,
+    ReactNode,
 } from "react";
 
-import { User } from "@/types/user";
+import { UserResponse } from "@/services/authService";
 
 interface UserContextType {
 
-    user: User | null;
+    user: UserResponse | null;
 
-    updateUser: (
-        updates: Partial<User>
+    setUser: (
+        user: UserResponse | null
     ) => void;
-
-    logout: () => void;
 
 }
 
-const UserContext = createContext<UserContextType | undefined>(
-    undefined
-);
+export const UserContext =
+    createContext<UserContextType | null>(null);
 
 interface Props {
+
     children: ReactNode;
+
 }
 
 export function UserProvider({
     children,
 }: Props) {
 
-    // Temporary mock user.
-    // Later this will come from your backend after login.
-    const [user, setUser] = useState<User | null>({
-
-        id: "1",
-
-        firstName: "Henry",
-
-        lastName: "Olaitan",
-
-        email: "henry@gmail.com",
-
-        phone: "+2348012345678",
-
-        avatar: "",
-
-    });
-
-    function updateUser(
-        updates: Partial<User>
-    ) {
-
-        setUser(previous => {
-
-            if (!previous) {
-                return previous;
-            }
-
-            return {
-
-                ...previous,
-
-                ...updates,
-
-            };
-
-        });
-
-    }
-
-    function logout() {
-
-        setUser(null);
-
-    }
-
-    const value = useMemo(() => ({
-
-        user,
-
-        updateUser,
-
-        logout,
-
-    }), [user]);
+    const [user, setUser] =
+        useState<UserResponse | null>(null);
 
     return (
 
-        <UserContext.Provider value={value}>
-
+        <UserContext.Provider
+            value={{
+                user,
+                setUser,
+            }}
+        >
             {children}
-
         </UserContext.Provider>
 
     );
-
-}
-
-export function useUser() {
-
-    const context = useContext(UserContext);
-
-    if (!context) {
-
-        throw new Error(
-            "useUser must be used inside UserProvider."
-        );
-
-    }
-
-    return context;
 
 }

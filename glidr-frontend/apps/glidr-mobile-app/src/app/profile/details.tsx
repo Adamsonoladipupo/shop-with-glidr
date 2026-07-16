@@ -16,9 +16,9 @@ import { router } from "expo-router";
 
 export default function DetailsScreen() {
 
-    const [firstName, setFirstName] = useState("Abdulwahab");
+    const [firstName, setFirstName] = useState("Henry");
 
-    const [lastName, setLastName] = useState("Henry");
+    const [lastName, setLastName] = useState("Olaitan");
 
     const [email, setEmail] = useState("henry@gmail.com");
 
