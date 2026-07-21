@@ -3,9 +3,9 @@ import styles from "../Header/Header.module.css";
 import logo from "../../assets/glidr_logo.svg"
 
 const navLinks = [
-  { label: "Company", href: "#" },
-  { label: "Supermarkets", href: "#" },
-  { label: "Logistics", href: "#" },
+  { label: "Company", href: "/" },
+  { label: "Supermarkets", href: "store" },
+  { label: "Riders", href: "#" },
   { label: "More", href: "#" },
 ];
 
