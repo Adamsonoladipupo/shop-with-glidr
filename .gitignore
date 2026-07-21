@@ -4,3 +4,7 @@ node_modules/
 android/.gradle/
 android/build/
 ios/Pods/
+
+/glidr-backend/.env
+.env
+.env.*
