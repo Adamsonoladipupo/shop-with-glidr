@@ -31,7 +31,8 @@ export default function Header() {
         </a>
 
         {/* CTA */}
-        <a href="https://expo.dev/artifacts/eas/m5K8S9rcl9NoKVefBCIMy5hnHBj_SVXYZg4B2m9MKLA.apk" className={styles.cta}>Use App</a>
+        <a href="https://expo.dev/artifacts/eas/ETUnJUPxnZJhtBZ94a7UXcGOQcY98y46vNd5vveZhqQ.apk" className={styles.cta}>Use App</a>
+        {/* <a href="https://expo.dev/artifacts/eas/ETUnJUPxnZJhtBZ94a7UXcGOQcY98y46vNd5vveZhqQ.apk"></a> */}
 
         {/* Hamburger */}
         <button
