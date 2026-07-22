@@ -293,7 +293,7 @@ Our long-term vision is to make supermarket shopping as effortless as possible b
 
 Developed by:
 
-- **Adamson Oladipupo**  
+- **Abdulwahab O. Adamson**  
   https://github.com/Adamsonoladipupo
 
 - **Nelly**  
