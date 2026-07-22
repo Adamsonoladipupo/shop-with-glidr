@@ -19,7 +19,9 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.GlidrMobileApp"
+      "package": "com.anonymous.GlidrMobileApp",
+      "usesCleartextTraffic": true
+
     },
     "web": {
       "output": "static",
