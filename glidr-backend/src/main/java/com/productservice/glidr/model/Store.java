@@ -1,5 +1,8 @@
 package com.productservice.glidr.model;
 
+import com.productservice.glidr.enums.BusinessType;
+import com.productservice.glidr.enums.StoreStatus;
+import com.productservice.glidr.enums.VerificationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,8 +21,19 @@ public class Store {
     @Id
     private String id = UUID.randomUUID().toString();
     private String name;
-    private String address;
     private String contactNumber;
     private String adminUserId;
+    private String businessName;
+    private String ownerName;
+    private String email;
+    private String phoneNumber;
+    private String password;
+    private String logo;
+    private BusinessType businessType;
+    private StoreAddress address;
+    private StoreStatus status;
+    private VerificationStatus verificationStatus;
+    private LocalDateTime updatedAt;
+    private LocalDateTime lastLoginAt;
     private LocalDateTime createdAt = LocalDateTime.now();
 }

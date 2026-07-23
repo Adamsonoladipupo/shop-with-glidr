@@ -1,7 +1,8 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  Alert, Keyboard, ScrollView,
+  Alert,
+  ScrollView,
   StyleSheet,
   Text,
   View
@@ -48,14 +49,14 @@ export default function LoginScreen() {
     emailRegex.test(email.trim());
 
   const isPasswordValid =
-    password.trim().length > 0;
+    password.length > 0;
 
   const isLoginEnabled =
     isEmailValid &&
     isPasswordValid &&
     !loading;
 
-  Keyboard.dismiss();
+  // Keyboard.dismiss();
 
   async function handleLogin() {
     try {

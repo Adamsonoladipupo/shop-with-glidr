@@ -69,7 +69,7 @@ public class ReceiptService {
 
         event.items().forEach(line -> {
             Product product = productRepository
-                    .findByStoreIdAndExternalId(event.storeId(), line.externalProductId())
+                    .findByStoreIdAndProviderProductId(event.storeId(), line.externalProductId())
                     .orElse(null);
             ReceiptItem item = new ReceiptItem();
             item.setReceiptId(saved.getId());

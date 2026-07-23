@@ -1,29 +1,49 @@
 package com.productservice.glidr.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.productservice.glidr.enums.ProductStatus;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Document(collection = "products")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Product {
 
     @Id
-    private String id = UUID.randomUUID().toString();
-    private String externalId;
+    private String id;
+
+    @Indexed
     private String storeId;
-    private String categoryId;
+
+    @Indexed
+    private String providerProductId;
+
+    private String sku;
+    private String barcode;
     private String name;
     private String description;
-    private BigDecimal price;
+    private String brand;
+    private String category;
+    private String imageUrl;
+    private BigDecimal sellingPrice;
+    private BigDecimal costPrice;
     private Integer quantity;
-    private Integer shelfNumber;
-    private Integer aisleNumber;
+
+    @Builder.Default
+    private ProductStatus status = ProductStatus.ACTIVE;
+
+    private LocalDateTime providerUpdatedAt;
+
+    @Builder.Default
+    private LocalDateTime lastSyncedAt = LocalDateTime.now();
+
 }
