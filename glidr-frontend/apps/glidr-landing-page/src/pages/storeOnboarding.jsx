@@ -5,9 +5,9 @@ import SignUpForm from "../components/signUpForm/signUpForm"
 const StoreOnboarding = () => {
     return (
         <>
-            <Header/>
+            <Header />
             <SignUpForm />
-            <Footer/>
+            <Footer />
         </>
     )
 }

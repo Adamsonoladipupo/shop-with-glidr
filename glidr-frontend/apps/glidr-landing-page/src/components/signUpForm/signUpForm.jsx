@@ -1,200 +1,297 @@
 import { useState } from "react";
 import styles from "./signUpForm.module.css";
 
-const COUNTRY_CODES = [
-  { code: "NG", dial: "+234", flag: "🇳🇬" },
-  { code: "GH", dial: "+233", flag: "🇬🇭" },
-  { code: "KE", dial: "+254", flag: "🇰🇪" },
-  { code: "ZA", dial: "+27",  flag: "🇿🇦" },
-  { code: "GB", dial: "+44",  flag: "🇬🇧" },
-  { code: "US", dial: "+1",   flag: "🇺🇸" },
-];
+function Input({
+  label,
+  type = "text",
+  placeholder = "",
+  value,
+  error,
+  onChange,
+}) {
+  return (
+    <div className={styles.field}>
+      <label className={styles.label}>
+        {label}
+      </label>
+
+      <input
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        className={`${styles.input} ${error ? styles.inputError : ""
+          }`}
+        onChange={onChange}
+      />
+
+      {error && (
+        <span className={styles.error}>
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
 
 export default function SignUpForm() {
-  const [fields, setFields] = useState({
-    supermarketName: "",
-    supermarketAddress: "",
-    phone: "",
-    countryCode: COUNTRY_CODES[0],
-    acceptTerms: true,
-  });
-  const [errors, setErrors] = useState({});
-  const [countryOpen, setCountryOpen] = useState(false);
+  const [form, setForm] = useState({
+    businessName: "",
+    ownerName: "",
 
-  const update = (key, value) => {
-    setFields(prev => ({ ...prev, [key]: value }));
-    if (errors[key]) setErrors(prev => ({ ...prev, [key]: "" }));
+    street: "",
+    city: "",
+    state: "",
+    country: "",
+    postalCode: "",
+
+    email: "",
+    phoneNumber: "",
+
+    password: "",
+    confirmPassword: "",
+
+    acceptTerms: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const update = (field, value) => {
+    setForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: "",
+      }));
+    }
   };
 
   const validate = () => {
     const next = {};
-    if (!fields.supermarketName.trim())    next.supermarketName    = "Supermarket name is required.";
-    if (!fields.supermarketAddress.trim()) next.supermarketAddress = "Address is required.";
-    if (!fields.phone.trim())              next.phone              = "Phone number is required.";
-    else if (!/^\d{7,15}$/.test(fields.phone.replace(/\s/g, "")))
-                                           next.phone              = "Enter a valid phone number.";
-    if (!fields.acceptTerms)              next.acceptTerms        = "You must accept the T&C.";
+
+    if (!form.businessName.trim())
+      next.businessName = "Business name is required.";
+
+    if (!form.ownerName.trim())
+      next.ownerName = "Owner name is required.";
+
+    if (!form.street.trim())
+      next.street = "Street address is required.";
+
+    if (!form.city.trim())
+      next.city = "City is required.";
+
+    if (!form.state.trim())
+      next.state = "State is required.";
+
+    if (!form.country.trim())
+      next.country = "Country is required.";
+
+    if (!form.email.trim())
+      next.email = "Email is required.";
+    else if (!emailRegex.test(form.email))
+      next.email = "Enter a valid email.";
+
+    if (!form.phoneNumber.trim())
+      next.phoneNumber = "Phone number is required.";
+
+    if (form.password.length < 8)
+      next.password = "Password must be at least 8 characters.";
+
+    if (form.confirmPassword !== form.password)
+      next.confirmPassword = "Passwords do not match.";
+
+    if (!form.acceptTerms)
+      next.acceptTerms =
+        "You must accept the Terms & Conditions.";
+
     return next;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) { setErrors(errs); return; }
-    /* submit logic here */
-    console.log("Form submitted:", fields);
+
+    const validation = validate();
+
+    if (Object.keys(validation).length) {
+      setErrors(validation);
+      return;
+    }
+
+    const payload = {
+      businessName: form.businessName,
+      ownerName: form.ownerName,
+      email: form.email,
+      phoneNumber: form.phoneNumber,
+      password: form.password,
+
+      businessType: "SUPERMARKET",
+
+      address: {
+        street: form.street,
+        city: form.city,
+        state: form.state,
+        country: form.country,
+        postalCode: form.postalCode,
+      },
+    };
+
+    console.log(payload);
+
+    /**
+     * TODO
+     *
+     * await registerStore(payload);
+     */
   };
+
+  <Input
+    label="Business Name"
+    value={form.businessName}
+    error={errors.businessName}
+    onChange={(e) =>
+      update("businessName", e.target.value)
+    }
+  />
+
 
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Let's Get You Started!</h1>
+        <h1 className={styles.title}>
+          Create Your Store Account
+        </h1>
 
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        <p className={styles.subtitle}>
+          Join Glidr and connect your supermarket
+          with thousands of customers.
+        </p>
 
-          {/* Supermarket Name */}
-          <div className={styles.field}>
-            <label className={styles.label} htmlFor="supermarketName">
-              Supermarket Name
-            </label>
-            <input
-              id="supermarketName"
-              type="text"
-              className={`${styles.input} ${errors.supermarketName ? styles.inputError : ""}`}
-              placeholder="Your Supermarket Name"
-              value={fields.supermarketName}
-              onChange={e => update("supermarketName", e.target.value)}
-              autoComplete="organization"
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+        >
+
+          <h2 className={styles.sectionTitle}>
+            Business Information
+          </h2>
+
+          <div className={styles.row}>
+            <Input
+              label="Business Name"
+              placeholder="ABC Supermarket"
             />
-            {errors.supermarketName && (
-              <span className={styles.error} role="alert">{errors.supermarketName}</span>
-            )}
-          </div>
 
-          {/* Supermarket Address */}
-          <div className={styles.field}>
-            <label className={styles.label} htmlFor="supermarketAddress">
-              Supermarket Address
-            </label>
-            <input
-              id="supermarketAddress"
-              type="text"
-              className={`${styles.input} ${errors.supermarketAddress ? styles.inputError : ""}`}
-              placeholder="Your Supermarket Address"
-              value={fields.supermarketAddress}
-              onChange={e => update("supermarketAddress", e.target.value)}
-              autoComplete="street-address"
+            <Input
+              label="Owner Name"
+              placeholder="John Doe"
             />
-            {errors.supermarketAddress && (
-              <span className={styles.error} role="alert">{errors.supermarketAddress}</span>
-            )}
           </div>
 
-          {/* Phone row */}
-          <div className={styles.field}>
-            <div className={`${styles.phoneRow} ${errors.phone ? styles.phoneRowError : ""}`}>
-              {/* Country code picker */}
-              <div className={styles.countryWrapper}>
-                <button
-                  type="button"
-                  className={styles.countryBtn}
-                  onClick={() => setCountryOpen(o => !o)}
-                  aria-haspopup="listbox"
-                  aria-expanded={countryOpen}
-                  aria-label="Select country code"
-                >
-                  <span className={styles.flag}>{fields.countryCode.flag}</span>
-                  <span className={styles.dial}>{fields.countryCode.dial}</span>
-                  <svg
-                    className={`${styles.chevron} ${countryOpen ? styles.chevronOpen : ""}`}
-                    width="12" height="12" viewBox="0 0 12 12" fill="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M2 4 L6 8 L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
 
-                {countryOpen && (
-                  <ul className={styles.dropdown} role="listbox" aria-label="Country codes">
-                    {COUNTRY_CODES.map(c => (
-                      <li
-                        key={c.code}
-                        role="option"
-                        aria-selected={fields.countryCode.code === c.code}
-                        className={`${styles.dropdownItem} ${fields.countryCode.code === c.code ? styles.dropdownItemActive : ""}`}
-                        onClick={() => {
-                          update("countryCode", c);
-                          setCountryOpen(false);
-                        }}
-                      >
-                        <span>{c.flag}</span>
-                        <span>{c.dial}</span>
-                        <span className={styles.countryName}>{c.code}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+          <h2 className={styles.sectionTitle}>
+            Business Address
+          </h2>
 
-              {/* Divider */}
-              <div className={styles.phoneDivider} aria-hidden="true" />
+          <Input
+            label="Street Address"
+            placeholder="12 Allen Avenue"
+          />
 
-              {/* Phone input */}
-              <input
-                id="phone"
-                type="tel"
-                className={styles.phoneInput}
-                placeholder="8023456789"
-                value={fields.phone}
-                onChange={e => update("phone", e.target.value.replace(/[^\d\s]/g, ""))}
-                autoComplete="tel-national"
-                aria-label="Phone number"
-              />
-            </div>
-            {errors.phone && (
-              <span className={styles.error} role="alert">{errors.phone}</span>
-            )}
+          <div className={styles.row}>
+            <Input
+              label="City"
+              placeholder="Ikeja"
+            />
+
+            <Input
+              label="State"
+              placeholder="Lagos"
+            />
           </div>
 
-          {/* Terms & Conditions */}
-          <div className={styles.termsRow}>
-            <button
-              type="button"
-              role="checkbox"
-              aria-checked={fields.acceptTerms}
-              className={`${styles.checkbox} ${fields.acceptTerms ? styles.checkboxChecked : ""}`}
-              onClick={() => update("acceptTerms", !fields.acceptTerms)}
-              aria-label="Accept terms and conditions"
-            >
-              {fields.acceptTerms && (
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 6 L5 9 L10 3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              )}
-            </button>
-            <span className={styles.termsText}>
-              I hereby accept the{" "}
-              <a href="#" className={styles.termsLink}>T&C</a>
-              {" "}of Liquid
+          <div className={styles.row}>
+            <Input
+              label="Country"
+              placeholder="Nigeria"
+            />
+
+            <Input
+              label="Postal Code"
+              placeholder="100271"
+            />
+          </div>
+
+
+          <h2 className={styles.sectionTitle}>
+            Account Information
+          </h2>
+
+          <Input
+            label="Email Address"
+            type="email"
+            placeholder="store@email.com"
+          />
+
+          <Input
+            label="Phone Number"
+            placeholder="08012345678"
+          />
+
+          <div className={styles.row}>
+            <Input
+              label="Password"
+              type="password"
+            />
+
+            <Input
+              label="Confirm Password"
+              type="password"
+            />
+          </div>
+
+
+          <div className={styles.terms}>
+            <input
+              type="checkbox"
+              checked={form.acceptTerms}
+              onChange={() =>
+                update(
+                  "acceptTerms",
+                  !form.acceptTerms
+                )
+              }
+            />
+
+            <span>
+              I agree to the{" "}
+              <a href="#">Terms & Conditions</a>
             </span>
           </div>
+
           {errors.acceptTerms && (
-            <span className={`${styles.error} ${styles.errorTerms}`} role="alert">
+            <span className={styles.error}>
               {errors.acceptTerms}
             </span>
           )}
 
-          {/* Submit */}
-          <button type="submit" className={styles.submitBtn}>
-            Sign Up
+          <button
+            type="submit"
+            className={styles.button}
+          >
+            Create Store Account
           </button>
 
-          {/* Login link */}
-          <p className={styles.loginText}>
+          <p className={styles.footer}>
             Already have an account?{" "}
-            <a href="#" className={styles.loginLink}>Log in</a>
+            <a href="store_in">Log In</a>
           </p>
-
         </form>
       </div>
     </div>

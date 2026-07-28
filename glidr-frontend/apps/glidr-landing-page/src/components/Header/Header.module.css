@@ -19,7 +19,6 @@
   gap: 16px;
 }
 
-/* ─── Brand ─── */
 .brand {
   display: flex;
   align-items: center;
@@ -34,7 +33,6 @@
   letter-spacing: -0.02em;
 }
 
-/* ─── Desktop Nav ─── */
 .desktopNav {
   display: none;
   align-items: center;
@@ -55,7 +53,6 @@
   color: var(--color-teal);
 }
 
-/* ─── CTA ─── */
 .cta {
   background: var(--color-teal);
   color: var(--color-white);
@@ -73,7 +70,6 @@
   transform: translateY(-1px);
 }
 
-/* ─── Hamburger ─── */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -114,7 +110,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ─── Mobile Nav ─── */
 .mobileNav {
   display: flex;
   flex-direction: column;
@@ -155,7 +150,6 @@
   background: var(--color-teal-dark);
 }
 
-/* ─── Breakpoints ─── */
 @media (min-width: 768px) {
   .inner {
     height: 68px;
