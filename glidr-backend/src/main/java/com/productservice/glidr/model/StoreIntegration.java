@@ -1,7 +1,7 @@
 package com.productservice.glidr.model;
 
 import com.productservice.glidr.enums.IntegrationStatus;
-import com.productservice.glidr.enums.InventoryProvider;
+import com.productservice.glidr.enums.POSProvider;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +18,7 @@ public class StoreIntegration {
     @Id
     private String id;
     private String storeId;
-    private InventoryProvider provider;
+    private POSProvider provider;
     private String baseUrl;
     private String apiKey;
     private String apiSecret;

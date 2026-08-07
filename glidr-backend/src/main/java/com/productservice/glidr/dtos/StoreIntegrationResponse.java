@@ -1,7 +1,7 @@
 package com.productservice.glidr.dtos;
 
 import com.productservice.glidr.enums.IntegrationStatus;
-import com.productservice.glidr.enums.InventoryProvider;
+import com.productservice.glidr.enums.POSProvider;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class StoreIntegrationResponse {
     private String id;
     private String storeId;
-    private InventoryProvider provider;
+    private POSProvider provider;
     private String baseUrl;
     private IntegrationStatus status;
     private Boolean enabled;

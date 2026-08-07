@@ -35,7 +35,6 @@ public class StoreIntegrationServiceImpl implements StoreIntegrationService{
                 .baseUrl(request.getBaseUrl())
                 .apiKey(request.getApiKey())
                 .apiSecret(request.getApiSecret())
-                .webhookSecret(request.getWebhookSecret())
                 .connectedAt(LocalDateTime.now())
                 .status(IntegrationStatus.CONNECTED)
                 .enabled(true)
@@ -65,9 +64,6 @@ public class StoreIntegrationServiceImpl implements StoreIntegrationService{
 
         if (request.getApiSecret() != null)
             integration.setApiSecret(request.getApiSecret());
-
-        if (request.getWebhookSecret() != null)
-            integration.setWebhookSecret(request.getWebhookSecret());
 
         if (request.getEnabled() != null)
             integration.setEnabled(request.getEnabled());
